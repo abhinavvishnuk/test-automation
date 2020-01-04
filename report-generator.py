@@ -1,5 +1,8 @@
 import xml.etree.ElementTree as ET 
-from datetime import datetime
+from datetime import datetime, timedelta
+import time
+
+print('Generating report...')
 
 #function to get elapsed time
 def get_elapsed_time(s1, s2, FMT):
@@ -38,8 +41,6 @@ report_level = 1
 output_xml = '/home/chinju/dev/venvs/output.xml'
 time_format = '%Y%m%d %H:%M:%S.%f'
 
-print('Generating report...')
-
 #open and read template html code for report
 f = open('/opt/lampp/htdocs/sample/report.html','r')
 html_template_code = f.read()
@@ -51,6 +52,8 @@ root = tree.getroot()
 
 #Get Summary Information
 suite = root.find("suite/status")
+file_creation_time = datetime.strptime(suite.get('endtime'), time_format)
+html_template_code = html_template_code.replace('replace-with-file-creation-time',str(file_creation_time)[:-3],1)
 elapsed_time= get_elapsed_time(suite.get('starttime'), suite.get('endtime'), time_format)
 status_message = 'All test passed'
 
@@ -95,6 +98,5 @@ html_template_code = html_template_code.replace('replace-with-table-rows', table
 f = open('mp-automation-report.html','w')
 f.write(html_template_code)
 f.close()
-
 
 print('Report generated.')
