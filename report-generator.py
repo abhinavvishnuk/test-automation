@@ -12,6 +12,15 @@ def get_total_statistics(node):
 	fail_percentage = round(100.00 - pass_percentage, 2)
 	return [str(total), str(pass_percentage), str(fail_percentage)]
 
+def update_total_statistics_card(node):
+	total, pass_percentage, fail_percentage = get_total_statistics(node)
+	return html_template_code.replace('replace-total',total,  1)\
+	.replace('replace-pass', critical_test.get('pass'), 1)\
+	.replace('replace-fail', critical_test.get('fail'), 1)\
+	.replace('replace-pass-percentage', pass_percentage, 2)\
+	.replace('replace-fail-percentage', fail_percentage, 2)
+	
+
 def get_suite_statistics(suite):
 	stat = root.find(suite_statistics.format(suite.get('id')))
 	status = suite.find('status')
@@ -22,6 +31,7 @@ def get_suite_statistics(suite):
            	<td><div class='percentage'><span class='percentage-pass' style='width:{}%'></span></div></td>
             <td>{}</td>
     </tr>""".format(suite.get('name'), total, stat.get('pass'), stat.get('fail'), elapsed_time, pass_percentage, pass_percentage )
+
 
 #variables to set report tree level and output.xml file path
 report_level = 1
@@ -63,20 +73,10 @@ html_template_code = html_template_code.replace('replace-summary-place-holder', 
 .replace('replace-summary-place-holder', elapsed_time, 1)
 
 #update critical test statistics in report
-total, pass_percentage, fail_percentage = get_total_statistics(critical_test)
-html_template_code = html_template_code.replace('rwc-total',total,  1)\
-.replace('rwc-pass', critical_test.get('pass'), 1)\
-.replace('rwc-fail', critical_test.get('fail'), 1)\
-.replace('rwc-pass-percentage', pass_percentage, 2)\
-.replace('rwc-fail-percentage', fail_percentage, 2)
+html_template_code = update_total_statistics_card(critical_test)
 
 #update all test statistics in report
-total, pass_percentage, fail_percentage = get_total_statistics(all_test)
-html_template_code = html_template_code.replace('rwa-total',total,  1)\
-.replace('rwa-pass', all_test.get('pass'), 1)\
-.replace('rwa-fail', all_test.get('fail'), 1)\
-.replace('rwa-pass-percentage', pass_percentage, 2)\
-.replace('rwa-fail-percentage', fail_percentage, 2)
+html_template_code = update_total_statistics_card(all_test)
 
 #Generate suite level report
 i = 0
@@ -98,4 +98,3 @@ f.close()
 
 
 print('Report generated.')
-
