@@ -71,8 +71,8 @@ if(suite.get('status') != 'PASS'):
 #update summary information in report
 html_template_code = html_template_code.replace('replace-summary-place-holder', status_message, 1)\
 .replace('replace-summary-place-holder', suite.get('status').lower(), 1)\
-.replace('replace-summary-place-holder', suite.get('starttime'), 1)\
-.replace('replace-summary-place-holder', suite.get('endtime'), 1)\
+.replace('replace-summary-place-holder', str(datetime.strptime(suite.get('starttime'),time_format))[:-3], 1)\
+.replace('replace-summary-place-holder', str(datetime.strptime(suite.get('endtime'),time_format))[:-3], 1)\
 .replace('replace-summary-place-holder', elapsed_time, 1)
 
 #update critical test statistics in report
@@ -98,5 +98,6 @@ html_template_code = html_template_code.replace('replace-with-table-rows', table
 f = open('mp-automation-report.html','w')
 f.write(html_template_code)
 f.close()
+
 
 print('Report generated.')
