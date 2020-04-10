@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <style>
+            body, html{
+                padding: 0;
+                margin : 0;
+            }
+            .heading-wrapper {
+                background: linear-gradient(rgb(0, 51, 204) 0%, rgba(51, 120, 204, 0.9) 100%); 
+                background-repeat: no-repeat;
+                color: #ffffff;
+                padding-bottom: 30px;
+            }
+            .heading-section {
+                width: 80%;
+                margin: 0 auto;
+                padding-top: 50px;
+            }
+            .heading-section-left, .heading-section-right {
+                display: inline-block;
+                width: 48%;
+            }
+
+            .table-wrapper {
+                margin-top: -20px;
+            }
+
+            .table-section {
+                width: 80%;
+                margin: 0 auto;
+            }
+            .rank-table {
+                width: 100%;
+                margin: 0 auto;
+            }
+            .rank-table th {
+                /*color: #FFF;*/
+                text-align: left;
+                border: none;
+            }
+
+            table {
+                border-collapse: collapse;
+                border-collapse:separate; 
+                border-spacing:0 15px; 
+            }
+
+            .rank-table td,  .rank-table th {
+                padding-left: 15px;
+                padding-right: 15px;
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+
+            .rank-table tbody tr {
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+
+            .deltas {
+                font-size: 0.8em;
+            }
+            .deltas svg{
+                width: 7px;
+                height: 7px;
+                stroke-width: 3;
+                vertical-align: -.25px;
+            }
+
+            .positive {
+                color: rgb(40, 167, 69);
+            }
+
+            .negative {
+                color: rgb(255, 7, 58);
+            }
+            .negative svg{
+                transform: rotate(180deg);
+            }
+
+            .percentage-wrapper {
+                margin: 0;
+                padding: 0;
+                float: left;
+                width: 77%;
+                height: 13px;
+            }
+
+            span.percentage-pass-fail {
+                margin: 0;
+                padding: 0;
+                float: right;
+                width: 20%;
+                background-color:rgb(225,225,225);
+                font-size: 0.75em;
+                border-radius: 7px;
+                height: 13px;
+                text-align: center;
+                overflow: hidden;
+            }
+
+            .percentage-fail {
+                width: 100%;
+                height: 13px;
+                background-color: rgb(255, 7, 58);
+                border-radius: 7px;
+                display: inline-block;
+            }
+
+            .percentage-pass {
+                width: 50%;
+                height: 13px;
+                margin: 0;
+                padding: 0;
+                background-color: rgb(40, 167, 69);
+                border-radius: 7px;
+            }
+            td.digit {
+                width: 11%;
+            }
+            td.time {
+                width: 11%;
+            }
+            td.percentage {
+                width: 20%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="heading-wrapper">
+            <div class="heading-section">
+                <div class="heading-section-left">
+                    <div>
+                        Marketplace Automation
+                    </div>
+                </div>
+                <div class="heading-section-right">
+                    2
+                </div>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <div class="table-section">
+                <table class="rank-table" border="1">
+                    <thead>
+                        <tr>
+                            <th><span>Project</span></th>
+                            <th><span>Manager</span></th>
+                            <th><span>Total</span></th>
+                            <th><span>Pass</span></th>
+                            <th><span>Fail</span></th>
+                            <th><span>Elapsed Time</span></th>
+                            <th><span>Pass/Fail</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Project Name 1</td>
+                            <td>Manager FirstName</td>
+                            <td>999999
+                                <span class="deltas negative">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+                                    210</span>
+                            </td>
+                            <td>999999
+                                <span class="deltas positive">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+                                    210</span>
+                            </td>
+                            <td>999999
+                                <span class="deltas positive">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+                                    210</span>
+                            </td>
+                            <td class="time">999:23:59:59</td>
+                            <td class="percentage">
+                                <span class="percentage-pass-fail">100.00</span>
+                                <div class="percentage-wrapper">
+                                    <div class="percentage-fail"><div class="percentage-pass"></div></div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Project Name 2</td>
+                            <td>FirstName LastName</td>
+                            <td class="digit">999999</td>
+                            <td class="digit">999999</td>
+                            <td class="digit">999999</td>
+                            <td>999:23:59:59</td>
+                            <td>
+                                <span class="percentage-pass-fail">50.00</span>
+                                <div class="percentage-wrapper">
+                                    <div class="percentage-fail"><div class="percentage-pass"></div></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </body>
+
+
+    
+</html>
