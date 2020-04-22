@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Test Execution Report</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+            html, body {
+                background-color: #f2f6ff;
+                color: #666;
+                overflow-x: hidden;
+                overflow-y: auto;
+                margin: 0;
+                padding: 0;
+                font-family: 'Roboto';
+            }
+
+            h1 , h2, h3, h4{
+                padding: 10px;
+                margin: 0;
+            }
+
+            .content-wrapper {
+                width: 100%;
+                position: relative;
+            }
+
+            .heading-wrapper {
+                width: 100%;
+                position: relative;
+                margin: 0;
+                padding: 0;
+                background: linear-gradient(rgb(41,105,235) 0%, rgb(74, 134, 255) 100%); 
+                color: #ffffff;
+                padding-top: 5%;
+                padding-bottom: 20px;
+            }
+
+            .heading-holder {
+                width: 80%;
+                margin: auto;
+                position: relative;
+            }
+
+            .heading-left,.heading-right  {
+                position: relative;
+                display: inline-block;
+                width: 50%;
+                margin: 0;
+                padding: 0;
+            }
+            .report-details {
+                text-align: right;
+            }
+            .container {
+                width: 80%;
+                margin: auto;
+                margin-top: 2%;
+            }
+            .row {
+                display: block;
+                position: relative;
+                width: 100%;
+                white-space: nowrap;
+            }
+            .col  {
+                position: relative;
+                display: inline-block;
+                margin: 0;
+                padding: 1%;
+            }
+                        
+            .col-2 {
+                width: 18%;
+            }
+            .col-4 {
+                width: 30%;           
+            }
+            .col-5 {
+                width: 38%;
+            }
+            .col-6 {
+                width: 48%;
+            }
+            .col-7 {
+                width: 60%;
+            }
+            .col-12 {
+                width: 98%;
+            }
+
+
+            .card {
+                border-radius: 8px;
+                background-color: #fff;
+                box-shadow: 0 2px 16px rgba(0,0,0,.06);
+                margin-top: 15px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .card-header {
+                height: 50px;
+                display: -webkit-box;
+                display: flex;
+                padding: 0 24px;
+                font-size: 16px;
+                font-weight: 500;
+                color: #333;
+                border-bottom: 1px solid rgba(0,0,0,.08);
+                -webkit-box-align: center;
+                align-items: center;
+            }
+            .card-content {
+                padding: 15px 12px;
+            }
+            .card-value {
+                font-weight: bold;
+                font-size: 1.5em;
+                color: #555;
+                overflow: hidden;
+            }
+
+            .card .row {
+                width: 100%;
+                margin: auto;
+                margin-bottom: 10px;
+            }
+
+            .card-title {
+                font-size: 0.8em;
+                font-weight: 300;
+                color: #888;
+                overflow: hidden;
+            }
+
+            .card .row:last-child {
+                margin-bottom: 0px;
+            }
+
+            p {
+                font-size: 0.6em;
+            }
+            .statistics-table {
+                width: 100%;
+                text-align: left;
+                border-radius: 8px;
+                background-color: #fff;
+                box-shadow: 0 2px 16px rgba(0,0,0,.06);
+                position: relative;
+                overflow: hidden;
+                border-collapse: collapse;
+                table-layout: fixed;
+            }
+
+            .statistics-table th {
+                border-bottom: 1px solid rgba(0,0,0,.08);
+                padding: 1em;
+                font-size: 1em;
+                font-weight: 500;
+                color: #555;
+                overflow: hidden;
+            }
+
+            .statistics-table td {
+                padding: 1em;
+                font-size: 0.9em;
+                font-weight: 400;
+                color: #888;
+                overflow: hidden;
+            }
+
+            .manager-row td {
+                border-top: 1px solid rgba(0,0,0,.08);
+                background-color:  rgba(0,0,0,.04);
+            }
+
+            .name {
+                width: 18%;
+            }
+
+            .count, time {
+                width: auto;
+            }
+            .percentage {
+                width: 18%;
+            }
+
+
+            .percentage-wrapper {
+                margin: 0;
+                padding: 0;
+                float: left;
+                width: 77%;
+                height: 13px;
+            }
+
+            span.percentage-pass-fail {
+                margin: 0;
+                padding: 0;
+                float: right;
+                width: 20%;
+                background-color:rgb(225,225,225);
+                font-size: 0.75em;
+                border-radius: 7px;
+                height: 13px;
+                text-align: center;
+                overflow: hidden;
+            }
+
+            .striped {
+                background-image: linear-gradient(-45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
+                background-size: 1rem 1rem;
+            }
+
+            .percentage-fail {
+                width: 100%;
+                height: 13px;
+                background-color: #dc3545;
+                border-radius: 7px;
+                display: inline-block;
+            }
+
+            .percentage-pass {
+                height: 13px;
+                margin: 0;
+                padding: 0;
+                background-color: #28a745;
+                border-radius: 7px;
+            }
+
+            .stat-table {
+                width: 100%;
+                text-align: left;
+                border-radius: 8px;
+                background-color: #fff;
+                box-shadow: 0 2px 16px rgba(0,0,0,.06);
+                position: relative;
+                overflow: hidden;
+                border-collapse: collapse;
+            }
+
+            .stat-table th {
+                border-bottom: 1px solid rgba(0,0,0,.08);
+                padding: 1em;
+                font-size: 1em;
+                font-weight: 500;
+                color: #555;
+                overflow: hidden;
+            }
+
+            .stat-table td {
+                overflow: hidden;
+                padding-bottom: 5px;
+                padding-left: 20px;
+                word-wrap: break-word;
+            }
+
+            .stat-value td{
+                font-weight: bold;
+                font-size: 1.5em;
+                color: #555;
+                padding-top: 1em;
+            }
+
+            .large {
+                font-size: 1.55em;
+            }
+
+            .small {
+                font-size: 0.8em!important;
+            }
+
+            .stat-title td{
+                font-size: 0.8em;
+                font-weight: 300;
+                color: #888;
+                padding-bottom: 2em;
+            }
+
+            .color-blue {
+                color: #4a86ff!important;
+            }
+            .color-orange {
+                color: #fbc02d!important;
+            }
+            .color-red {
+                color: #dc3545!important;
+            }
+            .color-green{
+                color: #28a745!important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content-wrapper">
+            <div class="heading-wrapper">
+                <div class="heading-holder">
+                    <div class="heading-left">
+                        <h1>Test Execution Report</h1>
+                        <h3>sub heading for report</h3>
+                    </div><!--
+                    --><div class="heading-right">
+                        <div class="report-details">
+                            <p>
+                                Report generated on<br/>
+                                31-12-9999 23:59:59 (+5:30 UTC)<br/>
+                                Generated by: Abhinav Vishnu Krishnadas
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                   <div class="col col-12">
+                    <table class="stat-table">
+                        <thead>
+                            <tr>
+                                <th colspan="6">Overall Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="stat-value large"> 
+                                <td class="color-blue">1200</td>
+                                <td class="color-green">1190</td>
+                                <td class="color-red">10</td>
+                                <td class="color-orange">98.0%</td>       
+                            </tr>
+                            <tr class="stat-title">
+                                <td>Total Cases</td>
+                                <td>Passed Cases</td>
+                                <td>Failed Cases</td>
+                                <td>Pass percentage</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="stat-table" style="margin-top: 2em;">
+                        <thead>
+                            <tr>
+                                <th colspan="6">Execution status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="stat-value small">                          
+                                <td class="color-orange">23hrs 59min 59sec</td>
+                                <td class="color-green">2020-04-22 23:45:45</td>
+                                <td class="color-red">2020-04-23 01:23:22</td>
+                                <td class="color-blue">#7999</td>
+                            </tr>
+                            <tr class="stat-title">
+                                <td>Elapsed Time</td>
+                                <td>Start Time</td>
+                                <td>End Time</td>
+                                <td>Build</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                   </div>
+                </div>
+                <div class="row">
+                    <div class="col col-12" style="text-align: left;">
+                        <h1>Test Statistics</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-12">
+                        <table class="statistics-table">
+                            <thead>
+                                <tr>
+                                    <th class="name">Manager</th>
+                                    <th class="name">Suite</th>
+                                    <th class="count">Total</th>
+                                    <th lcass="count">Pass</th>
+                                    <th class="count">Fail</th>
+                                    <th class="time">Elapsed Time</th>
+                                    <th class="percentage">Pass/Fail</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="manager-row">
+                                    <td>Lorem Ipsum</td>
+                                    <td></td>
+                                    <td>58 <span></span></td>
+                                    <td>46 <span></span></td>
+                                    <td>12 <span></span></td>
+                                    <td>0:00:29.345</td>
+                                    <td>
+                                        <span class="percentage-pass-fail">79.0</span>
+                                        <div class="percentage-wrapper">
+                                            <div class="percentage-fail striped"><div class="percentage-pass striped" style="width: 79%;"></div></div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr class="suite-row">
+                                    <td></td>
+                                    <td>Dolor sit amet</td>
+                                    <td>14 <span></span></td>
+                                    <td>13 <span></span></td>
+                                    <td>1 <span></span></td>
+                                    <td>0:00:04.549</td>
+                                    <td>
+                                        <span class="percentage-pass-fail">92.0</span>
+                                        <div class="percentage-wrapper">
+                                            <div class="percentage-fail striped"><div class="percentage-pass striped" style="width: 92%;"></div></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="suite-row"> 
+                                    <td></td>
+                                    <td>Consectetur</td>
+                                    <td>2 <span></span></td>
+                                    <td>1 <span></span></td>
+                                    <td>5 <span></span></td>
+                                    <td>0:00:14.734</td>
+                                    <td>
+                                        <span class="percentage-pass-fail">50.0</span>
+                                        <div class="percentage-wrapper">
+                                            <div class="percentage-fail striped"><div class="percentage-pass striped" style="width: 50%;"></div></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="suite-row"> 
+                                    <td></td>
+                                    <td>Adipiscing elit</td>
+                                    <td>42 <span></span></td>
+                                    <td>32 <span></span></td>
+                                    <td>10 <span></span></td>
+                                    <td>0:10:57.558</td>
+                                    <td>
+                                        <span class="percentage-pass-fail">76.0</span>
+                                        <div class="percentage-wrapper">
+                                            <div class="percentage-fail striped"><div class="percentage-pass striped" style="width: 76%;"></div></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="manager-row">
+                                    <td>Etiam finibus pulvinar</td>
+                                    <td></td>
+                                    <td>430 <span></span></td>
+                                    <td>349 <span></span></td>
+                                    <td>81 <span></span></td>
+                                    <td>16:18:50.228</td>
+                                    <td>
+                                        <span class="percentage-pass-fail">81.1</span>
+                                        <div class="percentage-wrapper">
+                                            <div class="percentage-fail striped"><div class="percentage-pass striped" style="width: 81.1%;"></div></div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr class="suite-row">
+                                    <td></td>
+                                    <td>sem</td>
+                                    <td>200 <span></span></td>
+                                    <td>150 <span></span></td>
+                                    <td>50 <span></span></td>
+                                    <td>02:19:51.123</td>
+                                    <td>
+                                        <span class="percentage-pass-fail">75.0</span>
+                                        <div class="percentage-wrapper">
+                                            <div class="percentage-fail striped"><div class="percentage-pass striped" style="width: 75%;"></div></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="suite-row"> 
+                                    <td></td>
+                                    <td>quis tincidunt</td>
+                                    <td>230 <span></span></td>
+                                    <td>199 <span></span></td>
+                                    <td>31 <span></span></td>
+                                    <td>13:59:59.211</td>
+                                    <td>
+                                        <span class="percentage-pass-fail">86.5</span>
+                                        <div class="percentage-wrapper">
+                                            <div class="percentage-fail striped"><div class="percentage-pass striped" style="width: 86.5%;"></div></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
